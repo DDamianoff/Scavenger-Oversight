@@ -49,7 +49,8 @@ CREATE TABLE Estados_Asistencia
 (
     Firma       CHAR(1) PRIMARY KEY,
     Definición  VARCHAR(20) UNIQUE,
-    EsNegativa  BOOL
+    EsNegativa  BOOL,
+    Detalle     CHAR(64)
 );
 
 CREATE TABLE Asistencias (
