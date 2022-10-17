@@ -4,7 +4,7 @@ CREATE TABLE Areas
     Nombre  CHAR(64) NOT NULL
 );
 
-CREATE TABLE Contacto
+CREATE TABLE Datos_Contacto
 (
     Id          INT PRIMARY KEY AUTO_INCREMENT,
     Teléfono    CHAR(20),
@@ -20,7 +20,7 @@ CREATE TABLE Voluntarios
     DNI             INT,
     Contacto_Id     INT,
 
-    FOREIGN KEY (Contacto_Id) REFERENCES Contacto(Id)
+    FOREIGN KEY (Contacto_Id) REFERENCES Datos_Contacto(Id)
 );
 
 CREATE TABLE Coordinadores (
@@ -45,7 +45,7 @@ CREATE TABLE Actividades
     FOREIGN KEY (Area_Id) REFERENCES Areas(Id)
 );
 
-CREATE TABLE Estado_De_Asistencia
+CREATE TABLE Estados_Asistencia
 (
     Firma       CHAR(1) PRIMARY KEY,
     Definición  VARCHAR(20) UNIQUE,
@@ -60,5 +60,5 @@ CREATE TABLE Asistencias (
 
     FOREIGN KEY (Actividad_Id)  REFERENCES Actividades(Id),
     FOREIGN KEY (Voluntario_Id) REFERENCES Voluntarios(Id),
-    FOREIGN KEY (Estado)        REFERENCES Estado_De_Asistencia(Firma)
+    FOREIGN KEY (Estado)        REFERENCES Estados_Asistencia (Firma)
 );
