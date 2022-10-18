@@ -20,7 +20,9 @@ CREATE TABLE Voluntarios
     DNI             INT,
     Contacto_Id     INT,
 
-    FOREIGN KEY (Contacto_Id) REFERENCES Datos_Contacto(Id)
+    FOREIGN KEY (Contacto_Id)
+        REFERENCES Datos_Contacto(Id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE Coordinadores (
