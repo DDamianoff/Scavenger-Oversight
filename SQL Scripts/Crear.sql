@@ -20,7 +20,8 @@ CREATE TABLE Voluntarios
     DNI             INT,
     Contacto_Id     INT,
 
-    FOREIGN KEY (Contacto_Id)
+    FOREIGN KEY FK_DatosContacto_Id
+        (Contacto_Id)
         REFERENCES Datos_Contacto(Id)
         ON DELETE CASCADE
 );
@@ -30,8 +31,13 @@ CREATE TABLE Coordinadores (
     Area_Id INT NOT NULL,
     Voluntario_Id INT NOT NULL,
 
-    FOREIGN KEY (Area_Id) REFERENCES Areas(Id),
-    FOREIGN KEY (Voluntario_Id) REFERENCES Voluntarios(Id)
+    FOREIGN KEY FK_Areas_Id
+        (Area_Id)
+        REFERENCES Areas(Id),
+
+    FOREIGN KEY FK_Voluntarios_Id
+        (Voluntario_Id)
+        REFERENCES Voluntarios(Id)
 );
 
 CREATE TABLE Actividades
@@ -44,7 +50,9 @@ CREATE TABLE Actividades
     Cancelada           BOOL,
     Area_Id             INT,
 
-    FOREIGN KEY (Area_Id) REFERENCES Areas(Id)
+    FOREIGN KEY FK_Areas_Id
+        (Area_Id)
+        REFERENCES Areas(Id)
 );
 
 CREATE TABLE Estados_Asistencia
@@ -61,7 +69,15 @@ CREATE TABLE Asistencias (
     Voluntario_Id   INT NOT NULL,
     Estado          CHAR(1),
 
-    FOREIGN KEY (Actividad_Id)  REFERENCES Actividades(Id),
-    FOREIGN KEY (Voluntario_Id) REFERENCES Voluntarios(Id),
-    FOREIGN KEY (Estado)        REFERENCES Estados_Asistencia (Firma)
+    FOREIGN KEY FK_Actividades_Id
+        (Actividad_Id)
+        REFERENCES Actividades(Id),
+
+    FOREIGN KEY FK_Voluntarios_Id
+        (Voluntario_Id)
+        REFERENCES Voluntarios(Id),
+
+    FOREIGN KEY FK_Estado_Firma
+        (Estado)
+        REFERENCES Estados_Asistencia (Firma)
 );
