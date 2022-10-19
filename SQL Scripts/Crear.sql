@@ -1,3 +1,6 @@
+# Hoy aprendí que las llaves foráneas se declaran en la entidad débil.
+# Here we go again 💀
+
 CREATE TABLE Areas
 (
     Id      INT PRIMARY KEY AUTO_INCREMENT,
@@ -6,9 +9,15 @@ CREATE TABLE Areas
 
 CREATE TABLE Datos_Contacto
 (
-    Id          INT PRIMARY KEY AUTO_INCREMENT,
-    Teléfono    CHAR(20),
-    Dirección   CHAR(64)
+    Id              INT PRIMARY KEY AUTO_INCREMENT,
+    Teléfono        CHAR(20),
+    Dirección       CHAR(64),
+    Voluntario_Id   INT,
+
+    FOREIGN KEY FK_Voluntario_Id
+        (Voluntario_Id)
+        REFERENCES Voluntarios(Id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE Voluntarios
@@ -17,13 +26,7 @@ CREATE TABLE Voluntarios
     Nombre          CHAR(32) NOT NULL,
     Apellido        CHAR(32) NOT NULL,
     Fecha_Ingreso   DATE,
-    DNI             INT,
-    Contacto_Id     INT,
-
-    FOREIGN KEY FK_DatosContacto_Id
-        (Contacto_Id)
-        REFERENCES Datos_Contacto(Id)
-        ON DELETE CASCADE
+    DNI             INT
 );
 
 CREATE TABLE Coordinadores (
